@@ -10,6 +10,11 @@
 
     <h1>Sorteio de Palavras</h1>
     
+    <label for="novaPalavra">Adicionar Nova Palavra:</label>
+    <input type="text" id="novaPalavra" placeholder="Digite a nova palavra">
+    <button onclick="adicionarPalavra()">Adicionar</button>
+    <br>
+
     <button onclick="sortearPalavra()">Sortear Palavra</button>
     <button onclick="limparLista()">Limpar Lista</button>
     
@@ -37,7 +42,32 @@
             "Brenha",
             "Briba",
             "Bruguelo",
-            "Bicuda"
+            "Bicuda",
+            "Petimba",
+            "Alembrar",
+            "Doidura",
+            "Mundaréu",
+            "Exaurida",
+            "Granfa",
+            "Espaventada",
+            "Carecer",
+            "Atarantado",
+            "Molambo",
+            "Esparolada",
+            "Desembestar",
+            "Aperreada",
+            "Desmantelo",
+            "Procê",
+            "Oxente",
+            "Avexada",
+            "Prosear",
+            "Visse",
+            "Jerimum",
+            "Macaxeira",
+            "Antonce",
+            "Fastiado",
+            "Mangar",
+            "Triscar"
       ];
       var palavrasCopy = [...palavras]
       var palavrasSorteadas = [];
@@ -71,6 +101,42 @@
       li.appendChild(document.createTextNode(numeroSorteio + ". " + palavrasSorteadas[numeroSorteio - 1]));
       listaSorteadas.appendChild(li);
     }
+
+    
+    function adicionarPalavra() {
+      var novaPalavra = document.getElementById("novaPalavra").value;
+      if (novaPalavra.trim() !== "") {
+        palavras.push(formatarPalavra(novaPalavra));
+        atualizarListaPalavras();
+        document.getElementById("novaPalavra").value = "";
+      }
+    }
+
+    function formatarPalavra(palavra) {
+      return palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase();
+    }
+
+    function atualizarListaSorteadas() {
+      var listaSorteadas = document.getElementById("listaSorteadas");
+      var numeroSorteio = palavrasSorteadas.length;
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode(numeroSorteio + ". " + palavrasSorteadas[numeroSorteio - 1]));
+      listaSorteadas.appendChild(li);
+    }
+
+    function atualizarListaPalavras() {
+      var listaPalavras = document.getElementById("listaPalavras");
+      listaPalavras.innerHTML = "";
+      palavras.forEach(function (palavra, index) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode((index + 1) + ". " + palavra));
+        listaPalavras.appendChild(li);
+      });
+    }
+
+    // Atualizar a lista de palavras inicial
+    atualizarListaPalavras();
+
     </script>
 
   </body>
