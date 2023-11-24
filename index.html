@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Sorteio de Palavras</h1>
+    
+    <button onclick="sortearPalavra()">Sortear Palavra</button>
+    <button onclick="limparLista()">Limpar Lista</button>
+    
+    <p id="palavraSorteada"></p>
+    <ul id="listaSorteadas"></ul>
+  
+    <script>
+      var palavras = [
+            "revesgueio",
+            "tri afú ",
+            "trolado ",
+            "lindeiro ",
+            "papagaio",
+            "guri",
+            "véio ",
+            "Abestado",
+            "Abirobado ",
+            "Abufelar ",
+            "Amancebado",
+            "Amarrado ",
+            "Arretado ",
+            "Avalie ",
+            "Avexado",
+            "Bizonho",
+            "Brenha",
+            "Briba",
+            "Bruguelo",
+            "Bicuda"
+      ];
+      var palavrasCopy = [...palavras]
+      var palavrasSorteadas = [];
+
+    function sortearPalavra() {
+      if (palavras.length === 0) {
+        alert("Todas as palavras foram sorteadas!");
+        return;
+      }
+
+      var indiceSorteado = Math.floor(Math.random() * palavras.length);
+      var palavraSorteada = palavras.splice(indiceSorteado, 1)[0];
+      palavraSorteada = palavraSorteada.charAt(0).toUpperCase() + palavraSorteada.slice(1).toLowerCase();
+      palavrasSorteadas.push(palavraSorteada);
+
+      document.getElementById("palavraSorteada").innerHTML = "Palavra Sorteada: " + palavraSorteada;
+      atualizarListaSorteadas();
+    }
+
+    function limparLista() {
+      palavrasSorteadas = [];
+      document.getElementById("listaSorteadas").innerHTML = "";
+      document.getElementById("palavraSorteada").innerHTML = "";
+      palavras = [...palavrasCopy]
+    }
+
+    function atualizarListaSorteadas() {
+      var listaSorteadas = document.getElementById("listaSorteadas");
+      var numeroSorteio = palavrasSorteadas.length;
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode(numeroSorteio + ". " + palavrasSorteadas[numeroSorteio - 1]));
+      listaSorteadas.appendChild(li);
+    }
+    </script>
+
+  </body>
+</html>
